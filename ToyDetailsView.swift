@@ -9,33 +9,51 @@ import SwiftUI
 
 struct ToyDetailsView: View {
     
-    @State private var name = ""
-    @State private var info = ""
-    @State private var category = ""
-    @State private var img_url = ""
-    @State private var price = 0.00
+    @Binding var toy: Toy
+    
+    enum Focused {
+        case name
+        case info
+        case category
+        case img_url
+        case price
+    }
+    
+    @State private var focused: Focused = .name
+    
+//    @State private var name = ""
+//    @State private var info = ""
+//    @State private var category = ""
+//    @State private var img_url = ""
+//    @State private var price = 0.00
     
     var body: some View {
         Text("Add a toy to your wishlist")
         Form {
             Section(header: Text("Name")) {
-                TextField("Name", text: $name)
+                TextField("Name", text: $toy.name)
+                    .focused($focused, equals: .name)
             }
             Section(header: Text("Category")) {
-                TextField("Category", text: $category)
+                TextField("Category", text: $toy.category)
+                    .focused($focused, equals: .name)
             }
             Section(header: Text("Price")) {
-                TextField("Price", value: $price, formatter: NumberFormatter.currencyFormatter)
+                TextField("Price", value: $toy.price, formatter: NumberFormatter.currencyFormatter)
+                                    .keyboardType(.decimalPad)
+                    .focused($focused, equals: .price)
             }
             Section(header: Text("Image url")) {
-                TextField("Image url", text: $img_url)
+                TextField("Image url", text: $toy.img_url)
+                    .focused($focused, equals: .img_url)
             }
             Section(header: Text("Info")) {
-                TextField("Info", text: $info)
+                TextField("Info", text: $toy.info)
+                    .focused($focused, equals: .info)
             }
             Section {
                 Button(action: {
-                    //toevoegen van toy aan API zodat het in lijst komt te staan
+                    //Verwijderen van toy aan API zodat het niet meer in de lijst staat
                     //als je drukt op knop kom je weer op ToyView uit
                 }) {
                     Text("Delete toy")
@@ -44,14 +62,29 @@ struct ToyDetailsView: View {
             }
         }
         .onAppear {
-                    // Set up number formatter properties (if needed)
-                    NumberFormatter.currencyFormatter.minimumFractionDigits = 2
-                    NumberFormatter.currencyFormatter.maximumFractionDigits = 2
+            if toy.name.isEmpty {
+                focused = .name
+            } else {
+                focused = .info
+            }
         }
     }
 }
 
 
-#Preview {
-    ToyDetailsView()
+//#Preview {
+//    ToyDetailsView()
+//}
+
+struct ToyDetailsView_Previews: PreviewProvider {
+    struct Preview: View {
+        @State private var toy = Toy(from: "Preview" as! Decoder).toys.first!
+        var body: some View {
+            ToyDetailsView(toy: $toy)
+        }
+    }
+    
+    static var previews: some View {
+        Preview()
+    }
 }

@@ -19,9 +19,6 @@ struct ContentView: View {
                     NavigationLink(destination: ToyEditorView()) {
                         Text("Add toy to wishlist")
                     }
-                    NavigationLink(destination: ToyDetailsView()) {
-                        Text("Details of toy")
-                    }
                 }
             }
         }

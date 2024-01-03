@@ -9,12 +9,15 @@ import SwiftUI
 
 struct ToyView: View {
     
+    @State var selectedToy: Toy?
     @State var toys = [Toy]()
     
     var body: some View {
         NavigationView {
             List(toys) { toy in
-                ToyRow(toy: toy)
+                NavigationLink(destination: ToyDetailsView(toy: $selectedToy), tag: toy, selection: $selectedToy) {
+                                    ToyRow(toy: toy)
+                }
             }.onAppear() {
                 Api().loadData { (toys) in
                     self.toys = toys
@@ -57,5 +60,4 @@ struct ToyRow: View {
             Text("\(String(format: "%.2f", toy.price)) €")
         }
     }
-    
 }

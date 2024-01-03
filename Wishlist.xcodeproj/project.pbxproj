@@ -16,6 +16,7 @@
 		61F82B2E2B459B5D00AC466D /* ToyEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F82B2D2B459B5D00AC466D /* ToyEditorView.swift */; };
 		61F82B302B459B8400AC466D /* ToyDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F82B2F2B459B8400AC466D /* ToyDetailsView.swift */; };
 		61F82B322B45B50A00AC466D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F82B312B45B50A00AC466D /* Extensions.swift */; };
+		61F82B362B45B9F100AC466D /* ToyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F82B352B45B9F100AC466D /* ToyStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		61F82B2D2B459B5D00AC466D /* ToyEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyEditorView.swift; sourceTree = "<group>"; };
 		61F82B2F2B459B8400AC466D /* ToyDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyDetailsView.swift; sourceTree = SOURCE_ROOT; };
 		61F82B312B45B50A00AC466D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = SOURCE_ROOT; };
+		61F82B352B45B9F100AC466D /* ToyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				61F82B2F2B459B8400AC466D /* ToyDetailsView.swift */,
 				61E54A752B44672F0024B5FF /* Assets.xcassets */,
 				61E54A7F2B4467A40024B5FF /* Toys.swift */,
+				61F82B352B45B9F100AC466D /* ToyStore.swift */,
 				61F82B312B45B50A00AC466D /* Extensions.swift */,
 				61E54A772B44672F0024B5FF /* Preview Content */,
 			);
@@ -154,6 +157,7 @@
 			files = (
 				61E54A802B4467A40024B5FF /* Toys.swift in Sources */,
 				61F82B2E2B459B5D00AC466D /* ToyEditorView.swift in Sources */,
+				61F82B362B45B9F100AC466D /* ToyStore.swift in Sources */,
 				61F82B302B459B8400AC466D /* ToyDetailsView.swift in Sources */,
 				61E54A742B44672A0024B5FF /* ContentView.swift in Sources */,
 				61E54A722B44672A0024B5FF /* WishlistApp.swift in Sources */,
