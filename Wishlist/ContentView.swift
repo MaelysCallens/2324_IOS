@@ -12,7 +12,19 @@ struct ContentView: View {
     @State var toys = [Toy]()
     
     var body: some View {
-        ToyView()
+        NavigationView {
+            ToyView()
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: ToyEditorView()) {
+                        Text("Add toy to wishlist")
+                    }
+                    NavigationLink(destination: ToyDetailsView()) {
+                        Text("Details of toy")
+                    }
+                }
+            }
+        }
     }
 }
 
