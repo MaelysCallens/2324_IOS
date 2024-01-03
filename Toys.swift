@@ -23,7 +23,7 @@ class Api : ObservableObject{
     @Published var toys = [Toy]()
     
     func loadData(completion:@escaping ([Toy]) -> ()) {
-        guard let url = URL(string: "https://noams-toys-api-doc.cyclic.app/toys/price?max=10000") else {
+        guard let url = URL(string: "https://noams-toys-api-doc.cyclic.app/toys/price?min=0") else {
             print("Invalid url...")
             return
         }
