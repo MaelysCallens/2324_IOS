@@ -51,6 +51,20 @@ class Api : ObservableObject{
                 completion(toys)
             }
         }.resume()
+    }
+    
+    func LoadDataOfSingleToy(id: String, completion:@escaping (Toy) -> ()) {
+        guard let url = URL(string: "https://noams-toys-api-doc.cyclic.app/toys/singleToy/\(id)") else {
+            print("Invalid url...")
+            return
+        }
         
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            let toy = try! JSONDecoder().decode(Toy.self, from: data!)
+            print(toy)
+            DispatchQueue.main.async {
+                completion(toy)
+            }
+        }.resume()
     }
 }

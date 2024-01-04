@@ -32,20 +32,22 @@ struct SearchView: View {
                         
                 if showResults {
                     List(api.toys) { toy in
-                        VStack(alignment: .leading) {
-                            HStack {
-                                Text("\(toy.name)")
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                            }
-                            HStack {
-                                Text("\(String(format: "%.2f", toy.price)) €")
-                                    .frame(maxWidth: .infinity, alignment: .trailing)
+                        NavigationLink(destination: ToyDetailsView(toy: toy)) {
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Text("\(toy.name)")
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                }
+                                HStack {
+                                    Text("\(String(format: "%.2f", toy.price)) €")
+                                        .frame(maxWidth: .infinity, alignment: .trailing)
+                                }
                             }
                         }
                     }
                 }
             }
-            .navigationBarTitle("Search for toys in your wishlist")
+            .navigationBarTitle("Search for toys")
         }
         if let notification = notification {
                 Text(notification.message)
