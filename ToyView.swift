@@ -21,7 +21,7 @@ struct ToyView: View {
             Api().loadData { (toys) in
                 self.toys = toys
             }
-        }.navigationTitle("Wishlist")
+        }
     }
 }
 

@@ -38,7 +38,7 @@ struct SearchView: View {
                     }
                 }
             }
-            .navigationBarTitle("Search for toys")
+            .navigationTitle("Search for toys")
         }
         if let notification = notification {
                 Text(notification.message)

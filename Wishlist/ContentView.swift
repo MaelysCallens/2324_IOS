@@ -12,20 +12,24 @@ struct ContentView: View {
     @State var toys = [Toy]()
     
     var body: some View {
+        
         NavigationView {
-            ToyView()
+            TabView {
+                ToyView()
+                    .tabItem {
+                        Label("Wishlist", systemImage: "square.grid.2x2")
+                    }
+                SearchView()
+                    .tabItem {
+                        Label("Search", systemImage: "magnifyingglass")
+                    }
+            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: ToyEditorView()) {
                         Text("Add toy to wishlist")
                     }
-                }                
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: SearchView()) {
-                        Label("Search", systemImage: "magnifyingglass")
-                    }
-            }
-
+                }
             }
         }
     }
