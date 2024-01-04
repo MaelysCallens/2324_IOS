@@ -7,23 +7,12 @@
 
 import Foundation
 
-struct Toy: Codable, Identifiable {
-    let id = UUID()
-    var name: String
-    var info: String
-    var category: String
-    var img_url: String
-    var price: Double
-    var user_id: String
-    //var user_id =  "63fark5bc079877f4ec47bc9"
-    var date_created: String
-}
+//SOURCE: https://medium.com/@adrian.creteanu/link-your-xcode-project-with-github-5d1aeb582b08
 
 class Api : ObservableObject{
     
     @Published var toys = [Toy]()
     
-    //https://medium.com/@adrian.creteanu/link-your-xcode-project-with-github-5d1aeb582b08
     func loadData(completion:@escaping ([Toy]) -> ()) {
         guard let url = URL(string: "https://noams-toys-api-doc.cyclic.app/toys/price?min=0") else {
             print("Invalid url...")
