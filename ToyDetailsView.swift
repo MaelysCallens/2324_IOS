@@ -12,6 +12,7 @@ struct ToyDetailsView: View {
     var toy: Toy
     
     var body: some View {
+        getAsyncImage(forCategory: toy.category)
         Form {
             Section(header: Text("Name")) {
                 Text(toy.name)

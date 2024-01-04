@@ -33,16 +33,7 @@ struct SearchView: View {
                 if showResults {
                     List(api.toys) { toy in
                         NavigationLink(destination: ToyDetailsView(toy: toy)) {
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    Text("\(toy.name)")
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                }
-                                HStack {
-                                    Text("\(String(format: "%.2f", toy.price)) €")
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                }
-                            }
+                            ToyRow(toy: toy)
                         }
                     }
                 }

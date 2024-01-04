@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		618FE1362B46E79B00B17F89 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618FE1352B46E79B00B17F89 /* SearchView.swift */; };
 		618FE1382B46F01D00B17F89 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618FE1372B46F01C00B17F89 /* Notification.swift */; };
+		618FE13B2B470E5300B17F89 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618FE13A2B470E5300B17F89 /* Image.swift */; };
 		61E54A722B44672A0024B5FF /* WishlistApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E54A712B44672A0024B5FF /* WishlistApp.swift */; };
 		61E54A742B44672A0024B5FF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E54A732B44672A0024B5FF /* ContentView.swift */; };
 		61E54A762B44672F0024B5FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61E54A752B44672F0024B5FF /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 		618FE1352B46E79B00B17F89 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		618FE1372B46F01C00B17F89 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = SOURCE_ROOT; };
 		618FE1392B46F15D00B17F89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		618FE13A2B470E5300B17F89 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		61E54A6E2B44672A0024B5FF /* Wishlist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wishlist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61E54A712B44672A0024B5FF /* WishlistApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistApp.swift; sourceTree = "<group>"; };
 		61E54A732B44672A0024B5FF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				61E54A7F2B4467A40024B5FF /* Toys.swift */,
 				61F82B312B45B50A00AC466D /* Extensions.swift */,
 				618FE1372B46F01C00B17F89 /* Notification.swift */,
+				618FE13A2B470E5300B17F89 /* Image.swift */,
 				61E54A772B44672F0024B5FF /* Preview Content */,
 			);
 			path = Wishlist;
@@ -169,6 +172,7 @@
 				61E54A722B44672A0024B5FF /* WishlistApp.swift in Sources */,
 				61E54A822B4468CC0024B5FF /* ToyView.swift in Sources */,
 				61F82B322B45B50A00AC466D /* Extensions.swift in Sources */,
+				618FE13B2B470E5300B17F89 /* Image.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

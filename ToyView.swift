@@ -21,7 +21,7 @@ struct ToyView: View {
             Api().loadData { (toys) in
                 self.toys = toys
             }
-        }.navigationTitle("Toy List")
+        }.navigationTitle("Wishlist")
     }
 }
 
@@ -36,32 +36,16 @@ struct ToyRow: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            //        HStack {
-            //            AsyncImage(url: URL(string: toy.img_url)) { phase in
-            //                switch phase {
-            //                case .success(let image):
-            //                    image
-            //                        .resizable()
-            //                        .aspectRatio(contentMode: .fit)
-            //                        .frame(width: 50, height: 50)
-            //                case .failure:
-            //                    Image(systemName: "photo") // Als foto niet aanwzig is in API, dan wordt er deze foto geplaatst
-            //                        .resizable()
-            //                        .aspectRatio(contentMode: .fit)
-            //                        .frame(width: 50, height: 50)
-            //                case .empty:
-            //                    ProgressView() // Er wordt een laadindicator toegevoegd terwijl de afbeelding wordt geladen
-            //                @unknown default:
-            //                    EmptyView()
-            //                }
-            //            }
             HStack {
-                Text("\(toy.name)")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            HStack {
-                Text("\(String(format: "%.2f", toy.price)) €")
-                    .frame(maxWidth: .infinity, alignment: .trailing)
+                getAsyncImage(forCategory: toy.category)
+                HStack {
+                    Text("\(toy.name)")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                HStack {
+                    Text("\(String(format: "%.2f", toy.price)) €")
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                }
             }
         }
     }
