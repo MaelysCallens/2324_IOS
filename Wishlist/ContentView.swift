@@ -19,7 +19,13 @@ struct ContentView: View {
                     NavigationLink(destination: ToyEditorView()) {
                         Text("Add toy to wishlist")
                     }
-                }
+                }                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: SearchView()) {
+                        Label("Search", systemImage: "magnifyingglass")
+                    }
+            }
+
             }
         }
     }

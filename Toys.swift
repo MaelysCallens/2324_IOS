@@ -27,6 +27,23 @@ class Api : ObservableObject{
             print("Invalid url...")
             return
         }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            let toys = try! JSONDecoder().decode([Toy].self, from: data!)
+            print(toys)
+            DispatchQueue.main.async {
+                completion(toys)
+            }
+        }.resume()
+        
+    }
+    
+    func loadDataWithMaximumPrice(maxPrice: String, completion:@escaping ([Toy]) -> ()) {
+        guard let url = URL(string: "https://noams-toys-api-doc.cyclic.app/toys/price?max=\(maxPrice)") else {
+            print("Invalid url...")
+            return
+        }
+        
         URLSession.shared.dataTask(with: url) { data, response, error in
             let toys = try! JSONDecoder().decode([Toy].self, from: data!)
             print(toys)
