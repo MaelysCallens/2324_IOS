@@ -90,8 +90,8 @@
 		61E54A702B44672A0024B5FF /* Wishlist */ = {
 			isa = PBXGroup;
 			children = (
-				61C8CA0A2B4718E700279E27 /* Views */,
 				61C8CA072B4718AB00279E27 /* Models */,
+				61C8CA0A2B4718E700279E27 /* Views */,
 				618FE1392B46F15D00B17F89 /* Info.plist */,
 				61E54A712B44672A0024B5FF /* WishlistApp.swift */,
 				61E54A752B44672F0024B5FF /* Assets.xcassets */,

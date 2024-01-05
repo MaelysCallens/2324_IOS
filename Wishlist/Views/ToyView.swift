@@ -13,15 +13,18 @@ struct ToyView: View {
     @State var toys = [Toy]()
     
     var body: some View {
-        List(toys) { toy in
-            NavigationLink(destination: ToyDetailsView(toy: toy)) {
-                ToyRow(toy: toy)
-            }
-        }.onAppear() {
-            Api().loadData { (toys) in
-                self.toys = toys
+        NavigationView {
+            List(toys) { toy in
+                NavigationLink(destination: ToyDetailsView(toy: toy)) {
+                    ToyRow(toy: toy)
+                }
+            }.onAppear() {
+                Api().loadData { (toys) in
+                    self.toys = toys
+                }
             }
         }
+        .navigationTitle("Wishlist")
     }
 }
 
