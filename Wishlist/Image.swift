@@ -8,19 +8,19 @@
 import Foundation
 import SwiftUI
 
-func getAsyncImage(forCategory category: String, defaultImageUrl: String = "https://www.example.com/default-image.png") -> some View {
+func getAsyncImage(forCategory category: String) -> some View {
     AsyncImage(url: getImageUrl(forCategory: category)) { phase in
         switch phase {
         case .success(let image):
             image
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 75, height: 75)
+                .frame(width: 60, height: 60)
         case .failure:
-            Image(systemName: "photo") // Als foto niet aanwzig is in API, dan wordt er deze foto geplaatst
+            Image(systemName: "photo") // Als foto niet aanwezig is in API, dan wordt deze foto geplaatst
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 75, height: 75)
+                .frame(width: 60, height: 60)
         case .empty:
             ProgressView() // Er wordt een laadindicator toegevoegd terwijl de afbeelding wordt geladen
         @unknown default:
@@ -43,3 +43,23 @@ func getImageUrl(forCategory category: String) -> URL {
             return URL(string: "https://static.vecteezy.com/system/resources/thumbnails/021/769/115/small/toys-logo-free-vector.jpg")!
     }
 }
+
+//Image ophalen van API via toy.img_url
+//AsyncImage(url: URL(string: toy.img_url)) { phase in
+//                switch phase {
+//                case .success(let image):
+//                    image
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fit)
+//                        .frame(width: 60, height: 60)
+//                case .failure:
+//                    Image(systemName: "photo") // Als foto niet aanwzig is in API, dan word er deze foto geplaatst
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fit)
+//                        .frame(width: 60, height: 60)
+//                case .empty:
+//                    ProgressView() // Er wordt een laadindicator toegevoegd terwijl de afbeelding wordt geladen
+//                @unknown default:
+//                    EmptyView()
+//                }
+//            }

@@ -17,6 +17,7 @@ struct ToyEditorView: View {
     
     @State private var error: Error?
     @State private var isLoading = false
+    @State private var isValid = false
     
     @State private var showAlert = false
     
@@ -25,18 +26,30 @@ struct ToyEditorView: View {
         Form {
             Section(header: Text("Name")) {
                 TextField("Name", text: $name)
+                    .onChange(of: name) { _ in
+                            checkValidity()
+                        }
             }
             Section(header: Text("Category")) {
                 TextField("Category", text: $category)
+                    .onChange(of: category) { _ in
+                            checkValidity()
+                        }
             }
             Section(header: Text("Price")) {
                 TextField("Price", value: $price, formatter: NumberFormatter.currencyFormatter)
+                    .onChange(of: price) { _ in
+                            checkValidity()
+                        }
             }
             Section(header: Text("Image url")) {
                 TextField("Image url", text: $img_url)
             }
             Section(header: Text("Info")) {
                 TextField("Info", text: $info)
+                    .onChange(of: info) { _ in
+                            checkValidity()
+                        }
             }
             Section {
                 Button(action: {
@@ -47,11 +60,11 @@ struct ToyEditorView: View {
                     Text("Add toy")
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                 }
-                .disabled(isLoading)
+                .disabled(!isValid)
             }
         }
         .onAppear {
-            // Set up number formatter properties (if needed)
+            //Opzetten van cijfers na de komma bij prijs
             NumberFormatter.currencyFormatter.minimumFractionDigits = 2
             NumberFormatter.currencyFormatter.maximumFractionDigits = 2
         }
@@ -61,6 +74,10 @@ struct ToyEditorView: View {
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Error"), message: Text("There was an error when adding the toy. Please try again later."), dismissButton: .default(Text("OK")))
         }
+    }
+    
+    func checkValidity() {
+        isValid = !name.isEmpty && !category.isEmpty && price > 0 && !info.isEmpty
     }
     
     func addToy() {
@@ -83,9 +100,6 @@ struct ToyEditorView: View {
         }
     }
 }
-
-
-
 
 #Preview {
     ToyEditorView()
