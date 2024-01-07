@@ -14,6 +14,8 @@ struct SearchView: View {
     @State private var showResults = false
     @State private var showAlert = false
     
+    @State private var isDeletable = false
+    
     @ObservedObject var api = Api()
     
     var body: some View {
@@ -33,7 +35,7 @@ struct SearchView: View {
                         
                 if showResults {
                     List(api.toys) { toy in
-                        NavigationLink(destination: ToyDetailsView(toy: toy)) {
+                        NavigationLink(destination: ToyDetailsView(toy: toy, isDeletable: $isDeletable)) {
                             ToyRow(toy: toy)
                         }
                     }
@@ -58,6 +60,7 @@ struct SearchView: View {
         
         api.loadDataWithMaximumPrice(maxPrice: maxPrice) { toys in
             self.api.toys = toys
+            isDeletable = false
         }
     }
 }

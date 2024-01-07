@@ -15,12 +15,12 @@ func getAsyncImage(forCategory category: String, defaultImageUrl: String = "http
             image
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 50, height: 50)
+                .frame(width: 75, height: 75)
         case .failure:
             Image(systemName: "photo") // Als foto niet aanwzig is in API, dan wordt er deze foto geplaatst
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 50, height: 50)
+                .frame(width: 75, height: 75)
         case .empty:
             ProgressView() // Er wordt een laadindicator toegevoegd terwijl de afbeelding wordt geladen
         @unknown default:

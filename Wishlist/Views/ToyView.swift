@@ -12,15 +12,18 @@ struct ToyView: View {
     @State var selectedToy: Toy?
     @State var toys = [Toy]()
     
+    @State private var isDeletable = false
+    
     var body: some View {
         NavigationView {
             List(toys) { toy in
-                NavigationLink(destination: ToyDetailsView(toy: toy)) {
+                NavigationLink(destination: ToyDetailsView(toy: toy, isDeletable: $isDeletable)) {
                     ToyRow(toy: toy)
                 }
             }.onAppear() {
                 Api().loadData { (toys) in
                     self.toys = toys
+                    isDeletable = true
                 }
             }
         }
