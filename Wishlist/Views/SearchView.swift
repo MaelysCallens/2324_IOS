@@ -10,9 +10,10 @@ import SwiftUI
 struct SearchView: View {
     
     @State private var searchPrice = ""
-    @State private var showResults = false
     
-    @State private var notification: Notification? = nil
+    @State private var showResults = false
+    @State private var showAlert = false
+    
     @ObservedObject var api = Api()
     
     var body: some View {
@@ -40,27 +41,18 @@ struct SearchView: View {
             }
             .navigationTitle("Search for toys")
         }
-        if let notification = notification {
-                Text(notification.message)
-                    .padding()
-                    //.background(Color.red)
-                    .foregroundColor(.red)
-                    .transition(.scale)
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + notification.displayTime) {
-                            withAnimation {
-                                self.notification = nil
-                            }
-                        }
-                    }
-            }
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Error"), message: Text("You have entered an invalid search price. Please try again."), dismissButton: .default(Text("OK")))
+        }
+        
+
     }
             
     private func updateToys(withMaxPrice maxPrice: String) {
         if !searchPrice.isEmpty && !CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: searchPrice)) {
             // Waarschuw de gebruiker dat de ingevoerde prijs ongeldig is
             self.searchPrice = ""
-            self.notification = Notification(message: "Invalid search price.")
+            self.showAlert = true
             return
         }
         

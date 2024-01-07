@@ -15,6 +15,11 @@ struct ToyEditorView: View {
     @State private var img_url = ""
     @State private var price = 0.00
     
+    @State private var error: Error?
+    @State private var isLoading = false
+    
+    @State private var showAlert = false
+    
     var body: some View {
         Text("Add a toy to your wishlist")
         Form {
@@ -37,19 +42,49 @@ struct ToyEditorView: View {
                 Button(action: {
                     //toevoegen van toy aan API zodat het in lijst komt te staan
                     //als je drukt op knop kom je weer op ToyView uit
+                    self.addToy()
                 }) {
                     Text("Add toy")
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                 }
+                .disabled(isLoading)
             }
         }
         .onAppear {
-                    // Set up number formatter properties (if needed)
-                    NumberFormatter.currencyFormatter.minimumFractionDigits = 2
-                    NumberFormatter.currencyFormatter.maximumFractionDigits = 2
+            // Set up number formatter properties (if needed)
+            NumberFormatter.currencyFormatter.minimumFractionDigits = 2
+            NumberFormatter.currencyFormatter.maximumFractionDigits = 2
+        }
+        .alert(isPresented: Binding<Bool>(get: { self.error != nil }, set: { _, _ in self.error = nil })) {
+            Alert(title: Text("Error"), message: Text(self.error?.localizedDescription ?? "Unknown error occurred."), dismissButton: .default(Text("OK")))
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Error"), message: Text("There was an error when adding the toy. Please try again later."), dismissButton: .default(Text("OK")))
+        }
+    }
+    
+    func addToy() {
+        let toyData: [String: Any] = [
+            "name": name,
+            "info": info,
+            "category": category,
+            "img_url": img_url,
+            "price": price
+        ]
+
+        Api().AddToy(toyData: toyData) { result in
+            switch result {
+            case .success(let data):
+                print("Toy added successfully! Data: \(data)")
+            case .failure(let error):
+                print("Error adding toy: \(error)")
+                self.showAlert = true
+            }
         }
     }
 }
+
+
 
 
 #Preview {

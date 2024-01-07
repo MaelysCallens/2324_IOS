@@ -9,9 +9,13 @@ import Foundation
 
 //SOURCE: https://medium.com/@adrian.creteanu/link-your-xcode-project-with-github-5d1aeb582b08
 
-class Api : ObservableObject{
+//DOCUMENTATION: https://noams-toys-api-doc.cyclic.app/
+
+class Api : ObservableObject {
     
     @Published var toys = [Toy]()
+    
+    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTk4MDM1NjYyYmI5YTRjN2IzYzVmNDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTcwNDQ2MTIxNCwiZXhwIjoxNzA0NDY0ODE0fQ.Y3ja8EIlxHTrOCR4M-uWwZ_nCmIDEBWyiG6-J2Ww41Q"
     
     func loadData(completion:@escaping ([Toy]) -> ()) {
         guard let url = URL(string: "https://noams-toys-api-doc.cyclic.app/toys/price?min=0") else {
@@ -100,21 +104,37 @@ class Api : ObservableObject{
         }.resume()
     }
     
-    func CreateToy(completion:@escaping (Toy) -> ()) {
-        guard let url = URL(string: "https://noams-toys-api-doc.cyclic.app/toys") else {
+    func AddToy(toyData: [String: Any], completion: @escaping (Result<Data, Error>) -> Void) {
+        guard let url = URL(string: "https://noams-toys-api-doc.cyclic.app/toys/") else {
             print("Invalid url...")
             return
         }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-//        URLSession.shared.dataTask(with: url) { data, response, error in
-//            let toy = try! JSONDecoder().decode(Toy.self, from: data!)
-//            print(toy)
-//            DispatchQueue.main.async {
-//                completion(toy)
-//            }
-//        }.resume()
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: toyData, options: [])
+        } catch {
+            print("Error serializing JSON: \(error)")
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+               !(200...299).contains(response.statusCode) {
+                completion(.failure(NSError(domain: "", code: response.statusCode, userInfo: nil)))
+                return
+            }
+            
+            completion(.success(data!))
+        }.resume()
     }
 }
