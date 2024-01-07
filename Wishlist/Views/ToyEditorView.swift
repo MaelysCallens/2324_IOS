@@ -53,8 +53,6 @@ struct ToyEditorView: View {
             }
             Section {
                 Button(action: {
-                    //toevoegen van toy aan API zodat het in lijst komt te staan
-                    //als je drukt op knop kom je weer op ToyView uit
                     self.addToy()
                 }) {
                     Text("Add toy")

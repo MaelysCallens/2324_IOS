@@ -80,8 +80,8 @@ class Api : ObservableObject {
         }.resume()
     }
     
-    //https://stackoverflow.com/questions/49683960/http-request-delete-and-put
-    func DeleteToy(id: String, completion:@escaping (Bool) -> ()) {
+    //SOURCE: https://stackoverflow.com/questions/49683960/http-request-delete-and-put
+    func DeleteToy(id: UUID, completion:@escaping (Bool) -> ()) {
         guard let url = URL(string: "https://noams-toys-api-doc.cyclic.app/toys/\(id)") else {
             print("Invalid url...")
             return
@@ -89,6 +89,7 @@ class Api : ObservableObject {
         
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
