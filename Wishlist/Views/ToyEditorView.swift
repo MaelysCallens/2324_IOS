@@ -16,7 +16,7 @@ struct ToyEditorView: View {
     @State private var price = 0.00
     
     @State private var error: Error?
-    @State private var isLoading = false
+    
     @State private var isValid = false
     
     @State private var showAlert = false
@@ -62,12 +62,8 @@ struct ToyEditorView: View {
             }
         }
         .onAppear {
-            //Opzetten van cijfers na de komma bij prijs
             NumberFormatter.currencyFormatter.minimumFractionDigits = 2
             NumberFormatter.currencyFormatter.maximumFractionDigits = 2
-        }
-        .alert(isPresented: Binding<Bool>(get: { self.error != nil }, set: { _, _ in self.error = nil })) {
-            Alert(title: Text("Error"), message: Text(self.error?.localizedDescription ?? "Unknown error occurred."), dismissButton: .default(Text("OK")))
         }
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Error"), message: Text("There was an error when adding the toy. Please try again later."), dismissButton: .default(Text("OK")))

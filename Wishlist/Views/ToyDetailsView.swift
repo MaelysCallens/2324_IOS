@@ -11,7 +11,7 @@ struct ToyDetailsView: View {
     
     var toy: Toy
     
-    //Delete button mag enkel maar zichtbaar zijn als je vanuit ToyView op toy drukt
+    //Delete button mag enkel maar zichtbaar zijn als je vanuit ToyView op een toy drukt
     @Binding var isDeletable: Bool
     
     @State private var showAlert = false

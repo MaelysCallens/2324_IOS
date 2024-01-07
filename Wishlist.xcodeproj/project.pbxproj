@@ -90,12 +90,12 @@
 			children = (
 				61C8CA072B4718AB00279E27 /* Models */,
 				61C8CA0A2B4718E700279E27 /* Views */,
-				618FE1392B46F15D00B17F89 /* Info.plist */,
 				61E54A712B44672A0024B5FF /* WishlistApp.swift */,
-				61E54A752B44672F0024B5FF /* Assets.xcassets */,
 				61E54A7F2B4467A40024B5FF /* Toys.swift */,
 				61F82B312B45B50A00AC466D /* Extensions.swift */,
 				618FE13A2B470E5300B17F89 /* Image.swift */,
+				618FE1392B46F15D00B17F89 /* Info.plist */,
+				61E54A752B44672F0024B5FF /* Assets.xcassets */,
 				61E54A772B44672F0024B5FF /* Preview Content */,
 			);
 			path = Wishlist;

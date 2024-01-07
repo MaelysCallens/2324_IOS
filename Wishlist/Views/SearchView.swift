@@ -23,7 +23,6 @@ struct SearchView: View {
             VStack {
                 TextField("Maximum price...", text: $searchPrice)
                                     .padding()
-                        
                 Button(action: {
                     updateToys(withMaxPrice: searchPrice)
                     self.showResults = true

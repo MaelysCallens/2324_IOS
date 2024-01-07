@@ -9,8 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var toys = [Toy]()
-    
     var body: some View {
         
         NavigationView {

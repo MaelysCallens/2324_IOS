@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ToyView: View {
     
-    @State var selectedToy: Toy?
     @State var toys = [Toy]()
     
     @State private var isDeletable = false
@@ -38,7 +37,6 @@ struct ToyView: View {
 struct ToyRow: View {
     
     let toy: Toy
-    
     
     var body: some View {
         VStack(alignment: .leading) {
